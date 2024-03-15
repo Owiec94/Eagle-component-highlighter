@@ -1,0 +1,61 @@
+﻿<Window x:Class="Eagle_Component_Highlighter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Eagle_Component_Highlighter"
+        mc:Ignorable="d"
+        Title="Eagle Component Highlighter" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="205"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel  Grid.Column="0" Grid.Row="0">
+            <Label  Grid.Column="0" x:Name="LblInstruction">
+                <TextBlock TextWrapping="Wrap">
+                    <Bold>1.</Bold> In Eagle sch: export BOM selecting Values in List type section, CSV in Output format section.<LineBreak/>
+                    <Bold>2.</Bold> Click Load BOM <LineBreak/>
+                    <Bold>3.</Bold> Choose which components You want to highlight in Eagle from list at the bottom<LineBreak/>
+                    <Bold>4.</Bold> Copy to clipboard <LineBreak/>
+                    <Bold>5.</Bold> Paste in Eagle brd console and hit enter
+                </TextBlock>
+            </Label>
+            <Button  Grid.Column="0" Content="Load BOM" x:Name="btnLoadBOM" Width="75" Click="BtnLoadBOM_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBox TextWrapping="Wrap" x:Name="TxtCommand"/>
+            <Button x:Name="BtnCopy" Content="Copy" Width="75" Click="BtnCopy_Click"/>
+            <CheckBox Content="Automatically copy on select" x:Name="CbxAutoCopy"/>
+        </StackPanel>
+        <DataGrid Grid.Row="0" Grid.Column="1" x:Name="DGVRAW" IsReadOnly="true">
+            <DataGrid.Columns>
+                <DataGridTextColumn MinWidth="20" Header="Qty" Binding="{Binding Qty}" />
+                <DataGridTextColumn MinWidth="30" Header="Value" Binding="{Binding Value}" />
+                <DataGridTextColumn MinWidth="40" Header="Device" Binding="{Binding Device}" />
+                <DataGridTextColumn MinWidth="40" Header="Package" Binding="{Binding Package}" />
+                <DataGridTextColumn MinWidth="40" Header="Parts" Binding="{Binding Parts}" />
+                <DataGridTextColumn MinWidth="50" Header="Description" Binding="{Binding Description}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Grid.Row="1" Grid.Column="1" x:Name="DGVCommand" IsReadOnly="true" MouseDown="DGVCommand_MouseDown">
+            <DataGrid.Columns>
+                <DataGridTextColumn MinWidth="20" Header="Qty" Binding="{Binding Qty}" />
+                <DataGridTextColumn MinWidth="30" Header="Value" Binding="{Binding Value}" />
+                <DataGridTextColumn MinWidth="40" Header="Device" Binding="{Binding Device}" />
+                <DataGridTextColumn MinWidth="40" Header="Package" Binding="{Binding Package}" />
+                <DataGridTextColumn MinWidth="50" Header="Command" Binding="{Binding Command}" />
+                <DataGridTextColumn MinWidth="50" Header="Description" Binding="{Binding Description}"/>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Copy"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+    </Grid>
+</Window>
